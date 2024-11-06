@@ -16,5 +16,10 @@
     "express": "^4.21.1",
     "node-pg-migrate": "^7.7.1",
     "pg": "^8.13.1"
+  },
+  "scripts": {
+    "migrate": "node-pg-migrate",
+    "migrate:create": "node-pg-migrate -m infra/migrations create",
+    "migrate:up": "node-pg-migrate -m infra/migrations --envPath .env up"
   }
 }
