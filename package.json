@@ -7,7 +7,8 @@
 		"@types/express": "^5.0.0",
 		"@types/pg": "^8.11.10",
 		"prettier": "^3.3.3",
-		"vitest": "^2.1.4"
+		"vitest": "^2.1.4",
+		"wait-on": "^8.0.1"
 	},
 	"peerDependencies": {
 		"typescript": "^5.0.0"
@@ -22,12 +23,14 @@
 	"scripts": {
 		"docker:reset": "docker compose -f infra/compose.yaml down && docker volume rm infra_pgdata && docker compose -f infra/compose.yaml up -d",
 		"docker:down": "docker compose -f infra/compose.yaml down",
+		"docker:clean": "docker compose -f infra/compose.yaml down && docker volume rm infra_pgdata",
 		"docker:up": "docker compose -f infra/compose.yaml up -d",
 		"migrate": "node-pg-migrate",
 		"migrate:create": "node-pg-migrate -m infra/migrations create",
 		"migrate:up": "node-pg-migrate -m infra/migrations --envPath .env.dev up",
 		"fmt:check": "prettier --check .",
 		"fmt:write": "prettier --write .",
-		"start": "bun src/index.js"
+		"start": "bun src/index.js",
+		"dev": "bun docker:up && wait-on tcp:5432 && sleep 5 && bun migrate:up && bun start"
 	}
 }

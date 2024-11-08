@@ -1,4 +1,8 @@
 import { Client } from "pg";
+import dotenv from "dotenv";
+dotenv.configDotenv({
+	path: ".env.dev",
+});
 
 export class Database {
 	constructor() {
