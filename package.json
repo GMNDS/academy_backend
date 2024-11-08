@@ -19,8 +19,11 @@
     "pg": "^8.13.1"
   },
   "scripts": {
+    "docker:reset": "docker compose -f infra/compose.yaml down && docker volume rm infra_pgdata && docker compose -f infra/compose.yaml up -d",
+    "docker:down": "docker compose -f infra/compose.yaml down", 
+    "docker:up": "docker compose -f infra/compose.yaml up -d", 
     "migrate": "node-pg-migrate",
     "migrate:create": "node-pg-migrate -m infra/migrations create",
-    "migrate:up": "node-pg-migrate -m infra/migrations --envPath .env up"
+    "migrate:up": "node-pg-migrate -m infra/migrations --envPath .env.dev up"
   }
 }
