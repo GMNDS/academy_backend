@@ -4,11 +4,11 @@ services:
     restart: always
     image: postgres:17.0-alpine3.20
     env_file:
-      - ../.env
+      - ../.env.dev
     ports:
       - "5432:5432"
     volumes:
-      - database-data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  database-data:
+  pgdata:
