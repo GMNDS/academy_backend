@@ -1,29 +1,33 @@
 {
-  "name": "academy_backend",
-  "module": "index.js",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest",
-    "@types/express": "^5.0.0",
-    "@types/pg": "^8.11.10",
-    "vitest": "^2.1.4"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "node-pg-migrate": "^7.7.1",
-    "pg": "^8.13.1"
-  },
-  "scripts": {
-    "docker:reset": "docker compose -f infra/compose.yaml down && docker volume rm infra_pgdata && docker compose -f infra/compose.yaml up -d",
-    "docker:down": "docker compose -f infra/compose.yaml down", 
-    "docker:up": "docker compose -f infra/compose.yaml up -d", 
-    "migrate": "node-pg-migrate",
-    "migrate:create": "node-pg-migrate -m infra/migrations create",
-    "migrate:up": "node-pg-migrate -m infra/migrations --envPath .env.dev up"
-  }
+	"name": "academy_backend",
+	"module": "index.js",
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "latest",
+		"@types/express": "^5.0.0",
+		"@types/pg": "^8.11.10",
+		"prettier": "^3.3.3",
+		"vitest": "^2.1.4"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.21.1",
+		"node-pg-migrate": "^7.7.1",
+		"pg": "^8.13.1"
+	},
+	"scripts": {
+		"docker:reset": "docker compose -f infra/compose.yaml down && docker volume rm infra_pgdata && docker compose -f infra/compose.yaml up -d",
+		"docker:down": "docker compose -f infra/compose.yaml down",
+		"docker:up": "docker compose -f infra/compose.yaml up -d",
+		"migrate": "node-pg-migrate",
+		"migrate:create": "node-pg-migrate -m infra/migrations create",
+		"migrate:up": "node-pg-migrate -m infra/migrations --envPath .env.dev up",
+		"fmt:check": "prettier --check .",
+		"fmt:write": "prettier --write .",
+		"start": "bun src/index.js"
+	}
 }

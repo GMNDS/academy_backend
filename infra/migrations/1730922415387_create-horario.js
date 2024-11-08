@@ -9,12 +9,12 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('horario', {
-    id: 'id',
-    inicio: { type: 'time', notNull: true },
-    fim: { type: 'time', notNull: true },
-    periodo: { type: 'varchar(50)', notNull: true }
-  });
+	pgm.createTable("horario", {
+		id: "id",
+		inicio: { type: "time", notNull: true },
+		fim: { type: "time", notNull: true },
+		periodo: { type: "varchar(50)", notNull: true },
+	});
 };
 
 /**
@@ -23,5 +23,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('horario');
+	pgm.dropTable("horario");
 };

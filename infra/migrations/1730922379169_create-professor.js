@@ -9,11 +9,11 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('professor', {
-    id: 'id',
-    nome: { type: 'varchar(50)', notNull: true },
-    sobrenome: { type: 'varchar(100)', notNull: true }
-  });
+	pgm.createTable("professor", {
+		id: "id",
+		nome: { type: "varchar(50)", notNull: true },
+		sobrenome: { type: "varchar(100)", notNull: true },
+	});
 };
 
 /**
@@ -22,5 +22,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('professor');
+	pgm.dropTable("professor");
 };

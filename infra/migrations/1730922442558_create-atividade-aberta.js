@@ -9,23 +9,23 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('atividade_aberta', {
-    id: 'id',
-    atividade_id: {
-      type: 'integer',
-      notNull: true,
-      references: 'atividade',
-      onDelete: 'CASCADE'
-    },
-    aluno_id: {
-      type: 'integer',
-      notNull: true,
-      references: 'aluno',
-      onDelete: 'CASCADE'
-    },
-    corpo: { type: 'varchar(5000)' },
-    arquivo: { type: 'bytea' }
-  });
+	pgm.createTable("atividade_aberta", {
+		id: "id",
+		atividade_id: {
+			type: "integer",
+			notNull: true,
+			references: "atividade",
+			onDelete: "CASCADE",
+		},
+		aluno_id: {
+			type: "integer",
+			notNull: true,
+			references: "aluno",
+			onDelete: "CASCADE",
+		},
+		corpo: { type: "varchar(5000)" },
+		arquivo: { type: "bytea" },
+	});
 };
 
 /**
@@ -34,5 +34,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('atividade_aberta');
+	pgm.dropTable("atividade_aberta");
 };

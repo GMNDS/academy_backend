@@ -9,13 +9,13 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('nota', {
-    id: 'id',
-    p1: { type: 'float' },
-    p2: { type: 'float' },
-    t: { type: 'float' },
-    nota: { type: 'float' }
-  });
+	pgm.createTable("nota", {
+		id: "id",
+		p1: { type: "float" },
+		p2: { type: "float" },
+		t: { type: "float" },
+		nota: { type: "float" },
+	});
 };
 
 /**
@@ -24,5 +24,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('nota');
+	pgm.dropTable("nota");
 };

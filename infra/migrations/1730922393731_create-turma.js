@@ -9,21 +9,21 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('turma', {
-    id: 'id',
-    professor_id: {
-      type: 'integer',
-      notNull: true,
-      references: 'professor',
-      onDelete: 'CASCADE'
-    },
-    disciplina_id: {
-      type: 'integer',
-      notNull: true,
-      references: 'disciplina',
-      onDelete: 'CASCADE'
-    }
-  });
+	pgm.createTable("turma", {
+		id: "id",
+		professor_id: {
+			type: "integer",
+			notNull: true,
+			references: "professor",
+			onDelete: "CASCADE",
+		},
+		disciplina_id: {
+			type: "integer",
+			notNull: true,
+			references: "disciplina",
+			onDelete: "CASCADE",
+		},
+	});
 };
 
 /**
@@ -32,5 +32,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('turma');
+	pgm.dropTable("turma");
 };

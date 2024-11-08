@@ -9,10 +9,10 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('sala', {
-    id: 'id',
-    codigo: { type: 'varchar(10)', notNull: true, unique: true }
-  });
+	pgm.createTable("sala", {
+		id: "id",
+		codigo: { type: "varchar(10)", notNull: true, unique: true },
+	});
 };
 
 /**
@@ -21,5 +21,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('sala');
+	pgm.dropTable("sala");
 };

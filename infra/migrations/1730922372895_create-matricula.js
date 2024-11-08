@@ -9,23 +9,23 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('matricula', {
-    id: 'id',
-    aluno_id: {
-      type: 'integer',
-      notNull: true,
-      references: 'aluno',
-      onDelete: 'CASCADE'
-    },
-    curso_id: {
-      type: 'integer',
-      notNull: true,
-      references: 'curso',
-      onDelete: 'CASCADE'
-    },
-    data_criacao: { type: 'date', notNull: true },
-    status_matricula: { type: 'boolean', notNull: true }
-  });
+	pgm.createTable("matricula", {
+		id: "id",
+		aluno_id: {
+			type: "integer",
+			notNull: true,
+			references: "aluno",
+			onDelete: "CASCADE",
+		},
+		curso_id: {
+			type: "integer",
+			notNull: true,
+			references: "curso",
+			onDelete: "CASCADE",
+		},
+		data_criacao: { type: "date", notNull: true },
+		status_matricula: { type: "boolean", notNull: true },
+	});
 };
 
 /**
@@ -34,5 +34,5 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropTable('matricula');
+	pgm.dropTable("matricula");
 };
