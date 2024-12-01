@@ -6,6 +6,7 @@
 		"@types/bun": "latest",
 		"@types/express": "^5.0.0",
 		"@types/pg": "^8.11.10",
+		"poku": "^2.7.1",
 		"prettier": "^3.3.3",
 		"vitest": "^2.1.4",
 		"wait-on": "^8.0.1"
@@ -31,6 +32,8 @@
 		"fmt:check": "prettier --check .",
 		"fmt:write": "prettier --write .",
 		"start": "bun src/index.js",
-		"dev": "bun docker:up && wait-on tcp:5432 && sleep 5 && bun migrate:up && bun start"
+		"dev:watch": "bun --hot src/index.js",
+		"watch": "bun --watch src/index.js",
+		"dev": "bun install && bun docker:up && wait-on tcp:5432 && sleep 5 && bun migrate:up && bun dev:watch"
 	}
 }
