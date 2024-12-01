@@ -3,7 +3,19 @@ import { Database } from "../../infra/database";
 export class Campus {
 	constructor(campus = {}) {
 		this.id = campus.id;
-		this.nome = campus.nome;
+		this.nome = campus.nome?.trim();
+	}
+
+	async create() {
+		if (!this.nome) {
+			throw new Error("Nome do campus não definido");
+		}
+		const newCampus = await new Database().query(
+			"INSERT INTO campus (nome) VALUES ($1) RETURNING *",
+			[this.nome],
+		);
+		console.log("Campus criado com sucesso");
+		return newCampus[0] ? newCampus[0] : null;
 	}
 
 	static async getAll() {
@@ -12,6 +24,10 @@ export class Campus {
 	}
 
 	static async getById(id) {
+		if (!Number.isInteger(id) || id <= 0) {
+			throw new Error("ID inválido");
+		}
+
 		const rows = await new Database().query(
 			"SELECT * FROM campus WHERE id = $1",
 			[id],
@@ -19,24 +35,23 @@ export class Campus {
 		return rows[0] ? new Campus(rows[0]) : null;
 	}
 
-	async create() {
-		if (!this.nome) {
-			const message_error = "Nome do campus não pode ser nulo ou vazio";
-			console.error(message_error);
-			throw new Error(message_error);
-		}
-		const newCampus = await new Database().query(
-			"INSERT INTO campus (nome) VALUES ($1) RETURNING *",
-			[this.nome],
+	static async getByName(name) {
+		const rows = await new Database().query(
+			"SELECT * FROM campus WHERE nome = $1",
+			[name],
 		);
-		console.log("Campus criado com sucesso");
-		return newCampus[0] ? new Campus(newCampus[0]) : null;
+		return rows[0] ? new Campus(rows[0]) : null;
 	}
+
 	async update() {
-		if (!this.id) {
-			console.error("É necessário um id correto para atualizar um usuário");
-			return null;
+		if (!Number.isInteger(this.id) || this.id <= 0) {
+			throw new Error("ID inválido");
 		}
+
+		if (!this.nome) {
+			throw new Error("Nome do campus não definido");
+		}
+
 		const updateCampus = await new Database().query(
 			"UPDATE campus SET nome = $1 WHERE id = $2 RETURNING *",
 			[this.nome, this.id],
@@ -46,12 +61,14 @@ export class Campus {
 	}
 
 	async delete() {
-		if (!this.id) return null;
+		if (!Number.isInteger(this.id) || this.id <= 0) {
+			throw new Error("ID inválido");
+		}
 		const deletedCampus = await new Database().query(
 			"DELETE FROM campus WHERE id = $1 RETURNING *",
 			[this.id],
 		);
-		console.log(`Campus deletado: \n ${deletedCampus[0]}`);
-		return deletedCampus[0] ? new Campus(deletedCampus[0]) : null;
+		console.log(`Campus ${this.nome} deletado`);
+		return deletedCampus[0] ? deletedCampus[0] : null;
 	}
 }

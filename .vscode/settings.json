@@ -10,7 +10,7 @@
 	"editor.formatOnPaste": true,
 	"editor.accessibilitySupport": "on",
 	"chat.editor.wordWrap": "on",
-	"files.autoSave": "afterDelay",
+	"files.autoSave": "off",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"prettier.enable": true,
 	"prettier.singleQuote": false,

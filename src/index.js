@@ -8,6 +8,9 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/v1", CampusRoutes);
 
+app.get("/", (req, res) => {
+	res.json({ message: "Works" });
+});
 app.listen(port, () => {
 	console.log(`Server running at http://localhost:${port}`);
 });
